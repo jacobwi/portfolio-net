@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Experience extends Component {
   render() {
-    return (
-      <div>
-        Exp
-      </div>
-    )
+    return <div>Exp</div>;
   }
 }

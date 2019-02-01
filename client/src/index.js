@@ -1,17 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
-import {
-  BrowserRouter as Router,
-  withRouter
-} from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store";
 import Loader from "./components/Loader";
-import Routes from './components/routes'
+import Routes from "./components/routes";
 import NavMenu from "./components/navbar";
-import Background from './assets/background-index.png';
+import Background from "./assets/background-index.png";
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -40,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
 class Root extends React.Component {
   componentWillMount() {
     if (localStorage.jwtToken) {
-        // TODO user already logged in
+      // TODO user already logged in
     }
   }
   render() {
@@ -60,11 +57,7 @@ const mapStateToProps = state => ({
   isLoading: state.authentication.isLoading
 });
 
-const RootWithAuth = withRouter(
-  connect(
-    mapStateToProps
-  )(Root)
-);
+const RootWithAuth = withRouter(connect(mapStateToProps)(Root));
 
 ReactDOM.render(
   <Provider store={store}>
