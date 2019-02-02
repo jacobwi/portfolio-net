@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 
 import media from "../../utils/Media";
@@ -12,8 +11,39 @@ const Header = styled.header`
 `;
 
 const FullNavigation = styled.div`
+  & .logo {
+    @import url("https://fonts.googleapis.com/css?family=Knewave");
+    font-family: "Knewave", cursive;
+    font-size: 2rem;
+    white-space: nowrap;
+    padding: 0 80px;
+    & a {
+      text-decoration: none;
+      color: white;
+      &:hover {
+        opacity: 0.8;
+        transition: opacity 1s ease;
+      }
+    }
+  }
+  & .active {
+    border-bottom: 3px solid white;
+    border-bottom-right-radius: 14px;
+    transition: border 0.2s linear;
+  }
   display: grid;
-  grid-template-rows: 1fr 80px;
+  grid-template-columns: 100px auto;
+
+  column-gap: 60%;
+  & div {
+    display: flex;
+    font-size: 1.6rem;
+    color: white;
+    letter-spacing: 3px;
+    & a {
+      margin: 0 10px;
+    }
+  }
   ${media.phone`
         display: none;
         
@@ -97,7 +127,15 @@ const HamburgerCloseContainer = styled.div`
     background: #ddd;
     border-radius: 9px;
     transform: rotate(0deg);
-    animation: fadein 2s;
+    animation: slideRight 1s;
+    @keyframes slideRight {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   }
   & span:nth-child(1) {
     top: 18px;
@@ -154,47 +192,50 @@ const MobileDropMenu = styled.div`
     -webkit-transform: rotate(135deg);
   }
   & .active {
-    border-bottom: 3px solid white;
-    color: blueviolet;
+    color: #00aeef;
   }
   & .footer-mobile {
     display: flex !important;
     flex-direction: row;
   }
-
-
 `;
 export default class NavMenu extends React.Component {
-  state = {
-    mobile: false,
-    activeItem: 'home',
-    isHovering: false,
-    hoveredItem: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      mobile: false,
+      activeItem: "Home",
+      isHovering: false,
+      hoveredItem: ""
+    };
   }
 
   handleMouseHover = item => {
-    console.log()
+    console.log();
     this.setState({
       isHovering: !this.state.isHovering,
       hoveredItem: item
     });
-  }
+  };
   getNavbarItems = items =>
     items.length > 0 &&
     items.map(item => (
-      <Link to={item.to}>
+      <Link
+        to={item.to}
+        onMouseEnter={() => this.handleMouseHover(item.name)}
+        onMouseLeave={this.handleMouseHover}
+        onClick={this.handleItemClick}
+        key={item.name}
+      >
         <div
-          className={this.state.activeItem === item.name ? "active item" : "item"}
+          className={
+            this.state.activeItem === item.name ? "active item" : "item"
+          }
           id={item.name}
           onClick={this.handleItemClick}
-          onMouseEnter={() => this.handleMouseHover(item.name)}
-          onMouseLeave={this.handleMouseHover}
         >
           {item.name}
-          { item.name == this.state.hoveredItem &&
-            <i class="arrow left"></i>
-          }
-      
+          {item.name === this.state.hoveredItem && <i className="arrow left" />}
         </div>
       </Link>
     ));
@@ -203,17 +244,23 @@ export default class NavMenu extends React.Component {
       mobile: !this.state.mobile
     });
   };
+  handleItemClick = e => {
+    if (e.target.id !== this.state.activeItem) {
+      this.setState({
+        activeItem: e.target.id,
+        mobile: false
+      });
+    }
+  };
   render() {
     const { activeItem, mobile } = this.state;
     return (
       <Header>
         <FullNavigation>
-          <div>
-            Jacob William
+          <div className="logo">
+            <Link to="/">Jacob William</Link>
           </div>
-
-          
-
+          <div>{this.getNavbarItems(Items)}</div>
         </FullNavigation>
 
         <Mobile>
@@ -236,10 +283,7 @@ export default class NavMenu extends React.Component {
                 <span />
                 <span />
               </HamburgerCloseContainer>
-              <div>
-                {this.getNavbarItems(Items)}
-              </div>
-              
+              <div>{this.getNavbarItems(Items)}</div>
             </MobileDropMenu>
           )}
         </Mobile>

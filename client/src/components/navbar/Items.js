@@ -14,6 +14,14 @@ const Items = [
   {
     name: "Work",
     to: "/work"
+  },
+  {
+    name: "Blog",
+    to: "/blog"
+  },
+  {
+    name: "Contact",
+    to: "/contact"
   }
 ];
 

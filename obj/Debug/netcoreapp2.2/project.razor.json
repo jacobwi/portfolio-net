@@ -1,14 +1,6 @@
 {
-  "ProjectFilePath": "c:\\Users\\amuhsinalhammadi\\Desktop\\mine\\portfolio-net\\unique.csproj",
+  "ProjectFilePath": "/Users/jacobwilliam/Desktop/net-portfolio/unique.csproj",
   "TargetFramework": "netcoreapp2.2",
   "TagHelpers": [],
-  "Configuration": {
-    "ConfigurationName": "MVC-2.1",
-    "LanguageVersion": "2.1",
-    "Extensions": [
-      {
-        "ExtensionName": "MVC-2.1"
-      }
-    ]
-  }
+  "Configuration": null
 }

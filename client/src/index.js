@@ -3,12 +3,10 @@ import ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
 import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store";
 import Loader from "./components/Loader";
 import Routes from "./components/routes";
 import NavMenu from "./components/navbar";
-import Background from "./assets/background-index.png";
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -24,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
   body {  
     background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
     overflow: hidden;
-    position: relative;
     width: 100%;
     height: 100vh;
     -moz-osx-font-smoothing: grayscale;
