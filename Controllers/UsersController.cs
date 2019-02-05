@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using portfolio_net.Data;
 using portfolio_net.DataTransferObjects;
 using portfolio_net.Models;
@@ -37,11 +38,14 @@ namespace portfolio_net.Controllers
         // POST api/users/login
         [HttpPost ("login")]
         public async Task<IActionResult> Login(LoginUser loginUser) {
+
             loginUser.Username = loginUser.Username.ToLower ();
             var user = await _repo.Login (loginUser.Username, loginUser.Password);
 
             if (user == null) {
-                return Unauthorized ("Username or Password is incorrect");
+                string[] errorArray = new string[1];
+                errorArray[0] = "Username or password is incorrect";
+                return Unauthorized (new {errors = errorArray});
             }
 
             var claims = new [] {

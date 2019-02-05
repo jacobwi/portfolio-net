@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Input, Button, Header, Image, Modal } from "semantic-ui-react";
+import { Input, Button, Header, Message, Modal } from "semantic-ui-react";
 import * as Color from '../../config/colors';
 import { connect } from 'react-redux';
 import { login } from '../../actions';
@@ -44,8 +44,21 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      errors: []
+      errors: {}
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      errors: this.props.errors ? this.props.errors : []
+    })
+  }
+  componentWillReceiveProps(newProps) {
+    if (newProps.errors) {
+      this.setState({
+        errors: newProps.errors
+      });
+    }
   }
 
   onChange = event => {
@@ -55,21 +68,9 @@ class Login extends Component {
   };
 
   onSubmit = event => {
-    if (!this.state.username) {
-      this.state.errors.push("Username is invalid");
-      this.setState({
-        open: true
-      });
-      return;
-    }
+
     event.preventDefault();
-    if (!this.state.password) {
-      this.state.errors.push("Password is invalid");
-      this.setState({
-        open: true
-      });
-      return;
-    }
+
     const User = {
       username: this.state.username,
       password: this.state.password
@@ -82,6 +83,11 @@ class Login extends Component {
       <Container>
         <div className="login-form">
           <Header as="h2" color='blue'>Login</Header>
+          { Object.keys(this.state.errors).length > 0 &&   <Message negative>
+    <Message.Header>Login Unsuccessful</Message.Header>
+    { Object.values(this.state.errors).map( (error, key) =>  <p>{error}</p>)}
+
+  </Message>}
           <Input
             icon="user circle outline"
             iconPosition="left"
@@ -105,31 +111,15 @@ class Login extends Component {
           </Button>
         </div>
 
-        <Modal size="mini" open={this.state.open} onClose={this.close}>
-          <Modal.Header>Unable to login</Modal.Header>
-          <Modal.Content>
-            {this.state.errors &&
-              this.state.errors.map((item, key) => (
-                <p style={{ color: "red" }}>{item}</p>
-              ))}
-          </Modal.Content>
-          <Modal.Actions>
-            <Button
-              positive
-              icon="thumbs up outline"
-              labelPosition="right"
-              content="OK"
-              onClick={this.close}
-            />
-          </Modal.Actions>
-        </Modal>
+
       </Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  authentication: state.authentication
+  authentication: state.authentication,
+  errors: state.errors
 });
 export default connect(
   mapStateToProps,
