@@ -68,19 +68,7 @@ export default class Login extends Component {
         open: true
       });
     }
-    axios
-    .post("api/users/login", {
-      username: this.state.username,
-      password: this.state.password
-    })
-    .then(res => {
-      if (res) {
-        
-      }
-    })
-    .catch(err =>
-      console.log(err)
-    );
+
   };
   close = () => this.setState({ open: false, errors: [] });
   render() {
