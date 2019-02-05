@@ -7,10 +7,7 @@ const Items = [
     name: "About",
     to: "/about"
   },
-  {
-    name: "Experience",
-    to: "/experience"
-  },
+
   {
     name: "Work",
     to: "/work"
@@ -22,6 +19,10 @@ const Items = [
   {
     name: "Contact",
     to: "/contact"
+  },
+  {
+    name: "Login",
+    to: "/login"
   }
 ];
 

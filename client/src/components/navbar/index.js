@@ -1,65 +1,87 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-import media from "../../utils/Media";
+import { css } from "emotion";
+import media from "../../Media";
+import { Link } from "react-router-dom";
 import Items from "./Items";
-
-const Header = styled.header`
-  margin: 0 !important;
-  padding: 40px 0;
+import Avatar from "../../assets/avatar.png";
+//import Footer from "../footer";
+import * as Color from "../../config/colors";
+const Main = styled.div`
+  width: auto !important;
+  padding: 0;
+  margin: 0;
 `;
 
-const FullNavigation = styled.div`
-  & .logo {
-    @import url("https://fonts.googleapis.com/css?family=Knewave");
-    font-family: "Knewave", cursive;
-    font-size: 2rem;
-    white-space: nowrap;
-    padding: 0 80px;
-    & a {
-      text-decoration: none;
-      color: white;
-      &:hover {
-        opacity: 0.8;
-        transition: opacity 1s ease;
-      }
-    }
+const Box = styled.div`
+  overflow: hidden;
+  font-size: 18px;
+  letter-spacing: 4px;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+`;
+
+const fullNav = css`
+  display: grid;
+  grid-template-rows: 1fr 80px;
+
+  & .top {
+    margin: 0;
+   
+  }
+  & img {
+    padding-left: 40px;
+    margin-top: 20px;
+    width: 200px;
   }
   & .active {
-    border-bottom: 3px solid white;
-    border-bottom-right-radius: 14px;
-    transition: border 0.2s linear;
+    border-left: 3px solid ${Color.primary};
+    color: ${Color.primary};
+    background-color: rgba(22, 20, 37, 0.4);
+    transition: all 500ms linear;
   }
-  display: grid;
-  grid-template-columns: 100px auto;
+  & .item {
+    padding: 10px 80px;
+    margin: 20px 0;
+    color: ${Color.secondary};
+    cursor: pointer;
+    @keyframes FadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.1);
+      }
 
-  column-gap: 60%;
-  & div {
-    display: flex;
-    font-size: 1.6rem;
-    color: white;
-    letter-spacing: 3px;
-    & a {
-      margin: 0 10px;
+      85% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
+    animation: FadeIn 1s linear;
+    animation-fill-mode: both;
   }
   ${media.phone`
         display: none;
         
-  `};
+    `};
   ${media.phablet`
         display: none;
-  `};
+    `};
+  ${media.tablet`
+        display: none;
+    `};
 `;
-const Mobile = styled.div`
+
+// Styles for the mobile View of the navigation
+const mobileNav = css`
   display: none;
   ${media.phone`
         display: block;
-  `};
+    `};
   ${media.phablet`
         display: block;
-  `};
+    `};
 `;
 
 const HamburgerContainer = styled.div`
@@ -127,15 +149,7 @@ const HamburgerCloseContainer = styled.div`
     background: #ddd;
     border-radius: 9px;
     transform: rotate(0deg);
-    animation: slideRight 1s;
-    @keyframes slideRight {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
+    animation: fadein 2s;
   }
   & span:nth-child(1) {
     top: 18px;
@@ -150,16 +164,6 @@ const HamburgerCloseContainer = styled.div`
 const MobileDropMenu = styled.div`
   background: rgba(62, 49, 68, 0.8);
   width: 100%;
-  animation: navBorder 1s forwards;
-  @keyframes navBorder {
-    from {
-      border-top-left-radius: 0;
-    }
-    to {
-      border-top-left-radius: 400px;
-    }
-  }
-  box-shadow: -17px 13px 41px rgba(13, 78, 158, 0.6);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -168,65 +172,31 @@ const MobileDropMenu = styled.div`
   & div {
     & a {
       font-size: 24px;
-      display: block;
-      color: white;
-      padding: 20px 0;
-
-      &:hover {
-        animation: fadein 1s ease-in-out;
-      }
+      padding: 0 140px;
+      color: ${Color.tertiary};
     }
   }
-
-  & i {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 4px;
-    position: relative;
-    left: 40px;
-  }
-
-  & .left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-  }
   & .active {
-    color: #00aeef;
+    border-bottom: 3px solid ${Color.primary};
+    color: ${Color.primary};
   }
   & .footer-mobile {
     display: flex !important;
     flex-direction: row;
   }
 `;
-export default class NavMenu extends React.Component {
+class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mobile: false,
       activeItem: "Home",
-      isHovering: false,
-      hoveredItem: ""
+      mobile: false
     };
   }
-
-  handleMouseHover = item => {
-    console.log();
-    this.setState({
-      isHovering: !this.state.isHovering,
-      hoveredItem: item
-    });
-  };
   getNavbarItems = items =>
     items.length > 0 &&
     items.map(item => (
-      <Link
-        to={item.to}
-        onMouseEnter={() => this.handleMouseHover(item.name)}
-        onMouseLeave={this.handleMouseHover}
-        onClick={this.handleItemClick}
-        key={item.name}
-      >
+      <Link to={item.to} key={item.name}>
         <div
           className={
             this.state.activeItem === item.name ? "active item" : "item"
@@ -235,7 +205,6 @@ export default class NavMenu extends React.Component {
           onClick={this.handleItemClick}
         >
           {item.name}
-          {item.name === this.state.hoveredItem && <i className="arrow left" />}
         </div>
       </Link>
     ));
@@ -255,15 +224,15 @@ export default class NavMenu extends React.Component {
   render() {
     const { activeItem, mobile } = this.state;
     return (
-      <Header>
-        <FullNavigation>
-          <div className="logo">
-            <Link to="/">Jacob William</Link>
-          </div>
-          <div>{this.getNavbarItems(Items)}</div>
-        </FullNavigation>
+      <Main>
+        <Box width="100%" className={fullNav}>
+          <div className="top">
+            <img src={Avatar} alt="av" />
 
-        <Mobile>
+            {this.getNavbarItems(Items)}
+          </div>
+        </Box>
+        <Box className={mobileNav}>
           <HamburgerContainer
             onClick={this.toggleNav}
             mobile={this.state.mobile}
@@ -286,8 +255,10 @@ export default class NavMenu extends React.Component {
               <div>{this.getNavbarItems(Items)}</div>
             </MobileDropMenu>
           )}
-        </Mobile>
-      </Header>
+        </Box>
+      </Main>
     );
   }
 }
+
+export default Menu;

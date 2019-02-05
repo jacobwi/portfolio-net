@@ -12078,11 +12078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jacobwilliam/Desktop/net-portfolio/unique.csproj",
-      "projectName": "unique",
-      "projectPath": "/Users/jacobwilliam/Desktop/net-portfolio/unique.csproj",
+      "projectUniqueName": "/Users/jacobwilliam/Desktop/portfolio/portfolio-net/portfolio-net.csproj",
+      "projectName": "portfolio-net",
+      "projectPath": "/Users/jacobwilliam/Desktop/portfolio/portfolio-net/portfolio-net.csproj",
       "packagesPath": "/Users/jacobwilliam/.nuget/packages/",
-      "outputPath": "/Users/jacobwilliam/Desktop/net-portfolio/obj/",
+      "outputPath": "/Users/jacobwilliam/Desktop/portfolio/portfolio-net/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
