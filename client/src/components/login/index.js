@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Button, Header, Image, Modal } from "semantic-ui-react";
 import * as Color from '../../config/colors';
-import axios from 'axios';
-
+import { connect } from 'react-redux';
+import { login } from '../../actions';
 const Container = styled.div`
   width: 320px;
   margin: auto;
@@ -37,7 +37,7 @@ const Container = styled.div`
     }
   }
 `;
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -60,6 +60,7 @@ export default class Login extends Component {
       this.setState({
         open: true
       });
+      return;
     }
     event.preventDefault();
     if (!this.state.password) {
@@ -67,8 +68,13 @@ export default class Login extends Component {
       this.setState({
         open: true
       });
+      return;
     }
-
+    const User = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    this.props.login(User, this.props.history);
   };
   close = () => this.setState({ open: false, errors: [] });
   render() {
@@ -121,3 +127,11 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  authentication: state.authentication
+});
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);

@@ -1,12 +1,9 @@
 import axios from 'axios';
-import tokenSetter from "../utils";
+import tokenSetter from "../utils/tokenSetter";
 
 export const login = (user, history) => dispatch => {
     axios
-    .post("api/users/login", {
-      username: this.state.username,
-      password: this.state.password
-    })
+    .post("api/users/login", user)
     .then(res => {
       if (res) {
         const { token } = res.data;
