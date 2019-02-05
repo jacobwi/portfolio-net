@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import store from "./store";
 import Loader from "./components/Loader";
@@ -10,31 +9,6 @@ import Routes from "./components/routes";
 import NavMenu from "./components/navbar";
 import media from "./Media";
 import Particles from "react-particles-js";
-//  background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
-const GlobalStyle = createGlobalStyle`
- html {
-  height: 100%;
-  width: 100%;
-  }
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-  body {  
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg,#290a0c,#110405);  
-  }
-
- 
-`;
 
 const Main = styled.div`
   background-color: rgb(22, 20, 37, 0.9);
@@ -91,7 +65,7 @@ const mapStateToProps = state => ({
   isLoading: state.authentication.isLoading
 });
 
-const RootWithAuth = connect(mapStateToProps)(Root);
+const RootWithAuth = withRouter(connect(mapStateToProps)(Root));
 
 ReactDOM.render(
   <Provider store={store}>
