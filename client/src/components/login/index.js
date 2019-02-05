@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Button, Header, Image, Modal } from "semantic-ui-react";
 import * as Color from '../../config/colors';
+import axios from 'axios';
 
 const Container = styled.div`
   width: 320px;
@@ -67,6 +68,19 @@ export default class Login extends Component {
         open: true
       });
     }
+    axios
+    .post("api/users/login", {
+      username: this.state.username,
+      password: this.state.password
+    })
+    .then(res => {
+      if (res) {
+        
+      }
+    })
+    .catch(err =>
+      console.log(err)
+    );
   };
   close = () => this.setState({ open: false, errors: [] });
   render() {
@@ -78,8 +92,8 @@ export default class Login extends Component {
             icon="user circle outline"
             iconPosition="left"
             placeholder="Username"
-            name="name"
-            value={this.state.name}
+            name="username"
+            value={this.state.username}
             onChange={this.onChange}
           />
           <Input
