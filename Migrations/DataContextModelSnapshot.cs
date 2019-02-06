@@ -30,6 +30,8 @@ namespace portfolio_net.Migrations
                     b.Property<string>("FromName")
                         .IsRequired();
 
+                    b.Property<bool>("IsRead");
+
                     b.Property<string>("Subject")
                         .IsRequired();
 

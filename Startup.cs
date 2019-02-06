@@ -30,7 +30,7 @@ namespace portfolio_net {
             services.AddDbContext<DataContext> (options =>
                 options.UseSqlite(Configuration.GetConnectionString ("DefaultConnection")));
             services.AddScoped<IAuthRepository, AuthRepository> ();
-
+            services.AddScoped<IEmailRepository, EmailRepository> ();
             services.AddCors ();
         }
 

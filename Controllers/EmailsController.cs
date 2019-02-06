@@ -9,7 +9,8 @@ using portfolio_net.Models;
 
 namespace portfolio_net.Controllers {
     [Route ("api/[controller]")]
-    public class EmailsController : Controller {
+    [ApiController]
+    public class EmailsController : ControllerBase {
         private readonly IEmailRepository _repo;
         public EmailsController (IEmailRepository repo) { _repo = repo; }
 

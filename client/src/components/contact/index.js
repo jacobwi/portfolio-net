@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Input, Button, Header, Icon, Modal } from "semantic-ui-react";
+import { Input, Button, Header, Icon, Modal, Message } from "semantic-ui-react";
 import * as Color from "../../config/colors";
 import Smoke from "../../assets/smoke_51.png";
 const Form = styled.div`
@@ -74,10 +74,15 @@ export default class Contact extends Component {
       email: "",
       subject: "",
       message: "",
-      errors: []
+      errors: [],
+      isSent: false
     };
   }
-
+  componentDidMount() {
+    this.setState({
+      isSent: false
+    })
+  }
   onChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -110,6 +115,24 @@ export default class Contact extends Component {
         open: true
       });
     }
+    let email = {
+      emailaddress: this.state.email,
+      body: this.state.message,
+      fromname: this.state.name,
+      subject: this.state.subject
+    }
+    axios
+    .post("api/emails/send", email)
+    .then(res => {
+      if (res) {
+        this.setState({
+          isSent: true
+        })
+      }
+    })
+    .catch(err =>
+      console.log(err)
+    );
   };
   close = () => this.setState({ open: false, errors: [] });
   render() {
@@ -119,6 +142,12 @@ export default class Contact extends Component {
         <div className="form">
           <Header as="h2" color="blue">
             <Icon name="send" color="blue" /> Contact
+            { this.state.isSent &&  <Message positive size='mini'>
+              <Message.Header>Message Sent!</Message.Header>
+              Jacob William will you be in touch with you shortly.
+              Thanks for contacting him,
+            </Message>}
+
           </Header>
           <Input
             icon="user circle outline"
@@ -152,7 +181,7 @@ export default class Contact extends Component {
             value={this.state.message}
             onChange={this.onChange}
           />
-          <Button secondary onClick={this.onSubmit}>
+          <Button secondary onClick={this.onSubmit} disabled={true ? this.state.isSent : false}>
             Submit
           </Button>
         </div>

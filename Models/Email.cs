@@ -3,6 +3,10 @@ namespace portfolio_net.Models
 {
     public class Email
     {
+        public Email()
+        {
+            IsRead = false;
+        }
         public int EmailId { get; set; }
         [Required(ErrorMessage = "Name is required")]
         public string FromName { get; set; }
@@ -14,5 +18,6 @@ namespace portfolio_net.Models
         public string Subject { get; set; }
         [Required(ErrorMessage = "Message is required")]
         public string Body { get; set; }
+        public bool IsRead { get; set; }
     }
 }
