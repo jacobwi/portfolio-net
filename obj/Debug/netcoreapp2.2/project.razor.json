@@ -1,14 +1,6 @@
 {
-  "ProjectFilePath": "c:\\Users\\amuhsinalhammadi\\Desktop\\net-porto\\portfolio-net.csproj",
+  "ProjectFilePath": "/Users/jacobwilliam/Desktop/portfolio-net/portfolio-net.csproj",
   "TargetFramework": "netcoreapp2.2",
   "TagHelpers": [],
-  "Configuration": {
-    "ConfigurationName": "MVC-2.1",
-    "LanguageVersion": "2.1",
-    "Extensions": [
-      {
-        "ExtensionName": "MVC-2.1"
-      }
-    ]
-  }
+  "Configuration": null
 }

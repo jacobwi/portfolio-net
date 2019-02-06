@@ -58,7 +58,6 @@ const Container = styled.div`
       animation: head 6s forwards;
       @keyframes head {
         from {
-
           filter: blur(1px);
           opacity: 0.6;
           transform: translateX(40px);
@@ -68,7 +67,7 @@ const Container = styled.div`
         to {
           filter: blur(0);
           opacity: 1;
-          color: #0082CB;
+          color: #0082cb;
         }
       }
     }
@@ -80,7 +79,7 @@ const Container = styled.div`
   }
 
   & em {
-    color: #0082CB;
+    color: #0082cb;
   }
 `;
 

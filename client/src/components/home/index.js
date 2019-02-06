@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import hero from "../../assets/section-1.png";
 import Typed from "react-typed";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Star from "../../assets/FreeAbstractLineArtDeeezy01.png";
-import * as Color from '../../config/colors';
+import * as Color from "../../config/colors";
 import Spinner from "../Loader";
 const Hero = styled.div`
   min-height: 100vh;
@@ -12,12 +12,12 @@ const Hero = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  color: white; 
+  color: white;
   & .background {
     background-image: url(${Star});
     background-size: contain;
     background-position: center;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     position: absolute;
     left: 0;
     right: 0;
@@ -27,11 +27,16 @@ const Hero = styled.div`
   }
   & .container {
     animation: anim 1s 1 ease;
-    @keyframes anim
-    {
-      0%{transform:scale(0);}
-      50%{transform:scale(1.7);}
-      100%{transform:scale(1);}
+    @keyframes anim {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.7);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -92,19 +97,15 @@ export default class Home extends Component {
 
     this.state = {
       isLoading: true
-    }
+    };
   }
   componentDidMount() {
-    this.setState({ isLoading: false})
+    this.setState({ isLoading: false });
   }
   render() {
     if (this.state.isLoading) {
-      return (
-        <Spinner />
-      );
-
-    }
-    else {
+      return <Spinner />;
+    } else {
       return (
         <Hero>
           <div className="background" />
@@ -133,7 +134,7 @@ export default class Home extends Component {
                 <br />
               </div>
               <Button>
-                <Link to='/about'>Learn More</Link>
+                <Link to="/about">Learn More</Link>
               </Button>
             </div>
           </div>

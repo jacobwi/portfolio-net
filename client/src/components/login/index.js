@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Button, Header, Message, Modal } from "semantic-ui-react";
-import * as Color from '../../config/colors';
-import { connect } from 'react-redux';
-import { login } from '../../actions';
+import * as Color from "../../config/colors";
+import { connect } from "react-redux";
+import { login } from "../../actions";
 const Container = styled.div`
   width: 320px;
   margin: auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: fadein 1s linear;
   min-height: 100vh;
   @keyframes fadein {
@@ -23,7 +23,6 @@ const Container = styled.div`
     }
   }
   & .login-form {
-
     display: grid;
     padding: 60px 40px;
     box-shadow: -17px 13px 41px rgba(0, 0, 0, 0.4);
@@ -51,7 +50,7 @@ class Login extends Component {
   componentDidMount() {
     this.setState({
       errors: this.props.errors ? this.props.errors : []
-    })
+    });
   }
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
@@ -68,7 +67,6 @@ class Login extends Component {
   };
 
   onSubmit = event => {
-
     event.preventDefault();
 
     const User = {
@@ -82,12 +80,17 @@ class Login extends Component {
     return (
       <Container>
         <div className="login-form">
-          <Header as="h2" color='blue'>Login</Header>
-          { Object.keys(this.state.errors).length > 0 &&   <Message negative>
-    <Message.Header>Login Unsuccessful</Message.Header>
-    { Object.values(this.state.errors).map( (error, key) =>  <p>{error}</p>)}
-
-  </Message>}
+          <Header as="h2" color="blue">
+            Login
+          </Header>
+          {Object.keys(this.state.errors).length > 0 && (
+            <Message negative>
+              <Message.Header>Login Unsuccessful</Message.Header>
+              {Object.values(this.state.errors).map((error, key) => (
+                <p>{error}</p>
+              ))}
+            </Message>
+          )}
           <Input
             icon="user circle outline"
             iconPosition="left"
@@ -110,8 +113,6 @@ class Login extends Component {
             Submit
           </Button>
         </div>
-
-
       </Container>
     );
   }

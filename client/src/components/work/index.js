@@ -17,7 +17,6 @@ const Main = styled.div`
   padding: 20px 40px;
   margin: 0 auto;
   & .header {
-
     & h2 {
     }
     & .icons {
@@ -43,7 +42,7 @@ const Content = styled.div`
     & .visible {
       filter: brightness(100%);
     }
-    animation: card 600ms  linear;
+    animation: card 600ms linear;
 
     @keyframes card {
       from {
@@ -54,7 +53,6 @@ const Content = styled.div`
         opacity: 1;
       }
     }
-
   }
   & img {
     object-fit: cover;
@@ -91,8 +89,8 @@ export default class Work extends Component {
     return (
       <Main>
         <div className="header">
-        <Header as="h2" color='blue'>
-            <Icon name='send' color='blue' /> Work
+          <Header as="h2" color="blue">
+            <Icon name="send" color="blue" /> Work
           </Header>
           <List floated="right" horizontal className="icons">
             <List.Item>

@@ -9,7 +9,11 @@ import Routes from "./components/routes";
 import NavMenu from "./components/navbar";
 import media from "./Media";
 import Particles from "react-particles-js";
+import tokenSetter from "./utils/tokenSetter";
+import jwt_decode from "jwt-decode";
 
+import { setUser } from "./actions";
+import PopupMessage from "./components/misc/PopupMessage";
 const Main = styled.div`
   background-color: rgb(22, 20, 37, 0.9);
   height: 100%;
@@ -41,9 +45,30 @@ const Container = styled.div`
 `;
 
 class Root extends React.Component {
+  state = {
+    message: ""
+  };
   componentWillMount() {
-    if (localStorage.jwtToken) {
-      // TODO user already logged in
+    if (localStorage.token) {
+      // User's already logged in
+      tokenSetter(localStorage.jwtToken);
+      const decoded = jwt_decode(localStorage.token);
+
+      // Check if token is not expired
+      if (decoded.exp < Date.now()) {
+
+        // Set user and get his/her notifications
+        store.dispatch(setUser(decoded));
+      }
+
+      // Expaired
+      else {
+        localStorage.removeItem("token");
+        this.setState({
+          message:
+            "Hi there! Your login session expaired please relog back in :)"
+        });
+      }
     }
   }
   render() {
@@ -54,6 +79,7 @@ class Root extends React.Component {
         <Container>
           <NavMenu />
           <Routes />
+          {this.state.message || this.props.notifications.length > 0 && <PopupMessage message={this.state.message} notifications={this.props.notifications} />}
         </Container>
         <Particles className="particles" />
       </Main>
@@ -62,10 +88,17 @@ class Root extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.authentication.isLoading
+  isLoading: state.authentication.isLoading,
+  authentication: state.authentication,
+  notifications: state.notifications
 });
 
-const RootWithAuth = withRouter(connect(mapStateToProps)(Root));
+const RootWithAuth = withRouter(
+  connect(
+    mapStateToProps,
+    { setUser }
+  )(Root)
+);
 
 ReactDOM.render(
   <Provider store={store}>

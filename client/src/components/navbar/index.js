@@ -26,7 +26,6 @@ const fullNav = css`
 
   & .top {
     margin: 0;
-   
   }
   & img {
     padding-left: 40px;
@@ -36,7 +35,7 @@ const fullNav = css`
   & .active {
     border-left: 3px solid ${Color.primary};
     color: ${Color.primary};
-    background-color: rgba(22, 20, 37, 0.4);
+    background-color: ;
     transition: all 500ms linear;
   }
   & .item {

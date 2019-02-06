@@ -1,11 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 import tokenSetter from "../utils/tokenSetter";
 import jwt_decode from "jwt-decode";
 
-import { GET_ERRORS, SET_USER } from "./Types";
+import { GET_ERRORS, SET_USER, SET_NOTIFICATIONS } from "./Types";
 // Login action
 export const login = (user, history) => dispatch => {
-    axios
+
+  axios
     .post("api/users/login", user)
     .then(res => {
       if (res) {
@@ -14,6 +15,7 @@ export const login = (user, history) => dispatch => {
         localStorage.setItem("token", token);
         const decoded = jwt_decode(token);
         dispatch(setUser(decoded));
+        dispatch(setUserNotifications(decoded.given_name));
         history.push("/");
       }
     })
@@ -23,7 +25,7 @@ export const login = (user, history) => dispatch => {
         payload: err.response.data
       })
     );
-}
+};
 
 export const setUser = decoded => {
   return {
@@ -31,3 +33,11 @@ export const setUser = decoded => {
     payload: decoded
   };
 };
+
+export const setUserNotifications = username => {
+  let noties = ["You have a message from "];
+  return {
+    type: SET_NOTIFICATIONS,
+    payload: noties
+  }
+}
