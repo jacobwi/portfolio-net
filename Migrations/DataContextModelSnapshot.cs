@@ -16,6 +16,28 @@ namespace portfolio_net.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
 
+            modelBuilder.Entity("portfolio_net.Models.Email", b =>
+                {
+                    b.Property<int>("EmailId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body")
+                        .IsRequired();
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired();
+
+                    b.Property<string>("FromName")
+                        .IsRequired();
+
+                    b.Property<string>("Subject")
+                        .IsRequired();
+
+                    b.HasKey("EmailId");
+
+                    b.ToTable("Emails");
+                });
+
             modelBuilder.Entity("portfolio_net.Models.User", b =>
                 {
                     b.Property<int>("Id")

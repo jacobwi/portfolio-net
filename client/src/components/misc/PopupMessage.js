@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Avatar from "../../assets/avatar.png";
-import { Icon, Label, Menu } from 'semantic-ui-react'
+import { Icon, Label, Menu } from "semantic-ui-react";
 const Main = styled.div`
   position: absolute;
   right: 40px;
@@ -20,19 +20,20 @@ const Main = styled.div`
 `;
 
 export default class PopupMessage extends Component {
-    componentDidMount() {
-        console.log(this.props)
-    }
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <Main>
-          <div>
+        <div>
           <img src={Avatar} alt="av" />
-          {this.props.notifications.length > 0 &&  <Label color='teal' floating>
-        {this.props.notifications.length}
-      </Label>}
-
-          </div>
+          {this.props.notifications.length > 0 && (
+            <Label color="teal" floating>
+              {this.props.notifications.length}
+            </Label>
+          )}
+        </div>
 
         <p>{this.props.message}</p>
       </Main>

@@ -35,7 +35,7 @@ const fullNav = css`
   & .active {
     border-left: 3px solid ${Color.primary};
     color: ${Color.primary};
-    background-color: ;
+    background-color: rgba(22, 20, 37, 0.4);
     transition: all 500ms linear;
   }
   & .item {

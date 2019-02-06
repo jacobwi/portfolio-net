@@ -56,7 +56,6 @@ class Root extends React.Component {
 
       // Check if token is not expired
       if (decoded.exp < Date.now()) {
-
         // Set user and get his/her notifications
         store.dispatch(setUser(decoded));
       }
@@ -79,7 +78,13 @@ class Root extends React.Component {
         <Container>
           <NavMenu />
           <Routes />
-          {this.state.message || this.props.notifications.length > 0 && <PopupMessage message={this.state.message} notifications={this.props.notifications} />}
+          {this.state.message ||
+            (this.props.notifications.length > 0 && (
+              <PopupMessage
+                message={this.state.message}
+                notifications={this.props.notifications}
+              />
+            ))}
         </Container>
         <Particles className="particles" />
       </Main>

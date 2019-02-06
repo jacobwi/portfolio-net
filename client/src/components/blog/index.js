@@ -18,8 +18,8 @@ export default class Blog extends Component {
   render() {
     return (
       <Container>
-        <Header as="h2">
-          <Image circular src="/images/avatar/large/patrick.png" /> Latest Posts
+        <Header as="h2" color="blue">
+          Latest Posts
         </Header>
         <Posts />
       </Container>

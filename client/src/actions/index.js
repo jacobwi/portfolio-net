@@ -5,7 +5,6 @@ import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_USER, SET_NOTIFICATIONS } from "./Types";
 // Login action
 export const login = (user, history) => dispatch => {
-
   axios
     .post("api/users/login", user)
     .then(res => {
@@ -39,5 +38,5 @@ export const setUserNotifications = username => {
   return {
     type: SET_NOTIFICATIONS,
     payload: noties
-  }
-}
+  };
+};
