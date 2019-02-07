@@ -28,13 +28,6 @@ namespace portfolio_net.Controllers
             _repo = repo;
         }
 
-        // GET api/users
-        [HttpGet("all_users")]
-        public ActionResult<IEnumerable<string>> Gets()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // POST api/users/login
         [HttpPost ("login")]
         public async Task<IActionResult> Login(LoginUser loginUser) {
@@ -99,17 +92,5 @@ namespace portfolio_net.Controllers
 
             return StatusCode (201);
         }
-
-        // POST api/users
-        [HttpPost("")]
-        public void Post([FromBody] string value) { }
-
-        // PUT api/users/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value) { }
-
-        // DELETE api/users/5
-        [HttpDelete("{id}")]
-        public void DeleteById(int id) { }
     }
 }
