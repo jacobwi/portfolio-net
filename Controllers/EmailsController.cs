@@ -15,14 +15,16 @@ namespace portfolio_net.Controllers {
         public EmailsController (IEmailRepository repo) { _repo = repo; }
 
 
-        // GET api/emails
-        [HttpGet ("")]
-        public ActionResult<IEnumerable<string>> Gets () {
-            return new string[] { "value1", "value2" };
+        // GET api/emails/getall
+        [HttpGet ("/getall")]
+        public async Task<IActionResult> GetAllEmails() {
+            var emails = await _repo.GetEmails();
+
+            return Ok(emails);
         }
 
 
-        // POST api/emails
+        // POST api/emails/send
         [HttpPost ("send")]
         public async Task<IActionResult> Send(Email email) { 
             await _repo.SendAsync(email); 
