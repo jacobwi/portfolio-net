@@ -5,7 +5,8 @@ import Typed from "react-typed";
 import { Link } from "react-router-dom";
 import Star from "../../assets/FreeAbstractLineArtDeeezy01.png";
 import * as Color from "../../config/colors";
-import Spinner from "../Loader";
+import { connect } from "react-redux";
+import { setLoader } from "../../actions";
 const Hero = styled.div`
   min-height: 100vh;
   display: flex;
@@ -91,55 +92,49 @@ const list = [
   "Public/Private API",
   "Microsoft SQL"
 ];
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLoading: true
-    };
-  }
-  componentDidMount() {
-    this.setState({ isLoading: false });
-  }
+class Home extends Component {
   render() {
-    if (this.state.isLoading) {
-      return <Spinner />;
-    } else {
-      return (
-        <Hero>
-          <div className="background" />
-          <div className="container">
-            <div>
-              <img src={hero} alt="ih" />
-            </div>
-            <div className="hero">
-              <h1>Hi there!</h1>
-              <p>My name is Jacob William and I specalize in</p>
-              <div className="typedp-container">
-                <Typed
-                  loop
-                  typeSpeed={70}
-                  backSpeed={70}
-                  strings={list}
-                  smartBackspace
-                  shuffle={false}
-                  backDelay={1200}
-                  fadeOut={true}
-                  fadeOutDelay={400}
-                  loopCount={0}
-                  showCursor={false}
-                  className="typed"
-                />
-                <br />
-              </div>
-              <Button>
-                <Link to="/about">Learn More</Link>
-              </Button>
-            </div>
+    return (
+      <Hero>
+        <div className="background" />
+        <div className="container">
+          <div>
+            <img src={hero} alt="ih" />
           </div>
-        </Hero>
-      );
-    }
+          <div className="hero">
+            <h1>Hi there!</h1>
+            <p>My name is Jacob William and I specalize in</p>
+            <div className="typedp-container">
+              <Typed
+                loop
+                typeSpeed={70}
+                backSpeed={70}
+                strings={list}
+                smartBackspace
+                shuffle={false}
+                backDelay={1200}
+                fadeOut={true}
+                fadeOutDelay={400}
+                loopCount={0}
+                showCursor={false}
+                className="typed"
+              />
+              <br />
+            </div>
+            <Button>
+              <Link to="/about">Learn More</Link>
+            </Button>
+          </div>
+        </div>
+      </Hero>
+    );
   }
 }
+
+const mapStateToProps = state => ({
+  authentication: state.authentication.isLoading
+});
+export default connect(
+  mapStateToProps,
+  { setLoader }
+)(Home);

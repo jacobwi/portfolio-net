@@ -192,6 +192,7 @@ class Menu extends React.Component {
       mobile: false
     };
   }
+
   getNavbarItems = items =>
     items.length > 0 &&
     items.map(item => (
@@ -221,7 +222,7 @@ class Menu extends React.Component {
     }
   };
   render() {
-    const { activeItem, mobile } = this.state;
+    const { mobile } = this.state;
     return (
       <Main>
         <Box width="100%" className={fullNav}>

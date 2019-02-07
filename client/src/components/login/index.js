@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Input, Button, Header, Message, Modal } from "semantic-ui-react";
+import { Input, Button, Header, Message } from "semantic-ui-react";
 import * as Color from "../../config/colors";
 import { connect } from "react-redux";
 import { login } from "../../actions";

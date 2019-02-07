@@ -81,7 +81,7 @@ export default class Contact extends Component {
   componentDidMount() {
     this.setState({
       isSent: false
-    })
+    });
   }
   onChange = event => {
     this.setState({
@@ -120,19 +120,17 @@ export default class Contact extends Component {
       body: this.state.message,
       fromname: this.state.name,
       subject: this.state.subject
-    }
+    };
     axios
-    .post("api/emails/send", email)
-    .then(res => {
-      if (res) {
-        this.setState({
-          isSent: true
-        })
-      }
-    })
-    .catch(err =>
-      console.log(err)
-    );
+      .post("api/emails/send", email)
+      .then(res => {
+        if (res) {
+          this.setState({
+            isSent: true
+          });
+        }
+      })
+      .catch(err => console.log(err));
   };
   close = () => this.setState({ open: false, errors: [] });
   render() {
@@ -142,12 +140,13 @@ export default class Contact extends Component {
         <div className="form">
           <Header as="h2" color="blue">
             <Icon name="send" color="blue" /> Contact
-            { this.state.isSent &&  <Message positive size='mini'>
-              <Message.Header>Message Sent!</Message.Header>
-              Jacob William will you be in touch with you shortly.
-              Thanks for contacting him,
-            </Message>}
-
+            {this.state.isSent && (
+              <Message positive size="mini">
+                <Message.Header>Message Sent!</Message.Header>
+                Jacob William will you be in touch with you shortly. Thanks for
+                contacting him,
+              </Message>
+            )}
           </Header>
           <Input
             icon="user circle outline"
@@ -181,7 +180,11 @@ export default class Contact extends Component {
             value={this.state.message}
             onChange={this.onChange}
           />
-          <Button secondary onClick={this.onSubmit} disabled={true ? this.state.isSent : false}>
+          <Button
+            secondary
+            onClick={this.onSubmit}
+            disabled={true ? this.state.isSent : false}
+          >
             Submit
           </Button>
         </div>

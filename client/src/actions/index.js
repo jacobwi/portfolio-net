@@ -2,7 +2,7 @@ import axios from "axios";
 import tokenSetter from "../utils/tokenSetter";
 import jwt_decode from "jwt-decode";
 
-import { GET_ERRORS, SET_USER, SET_NOTIFICATIONS } from "./Types";
+import { GET_ERRORS, SET_USER, SET_NOTIFICATIONS, SET_LOADER } from "./Types";
 // Login action
 export const login = (user, history) => dispatch => {
   axios
@@ -38,5 +38,12 @@ export const setUserNotifications = username => {
   return {
     type: SET_NOTIFICATIONS,
     payload: noties
+  };
+};
+
+export const setLoader = condition => {
+  return {
+    type: SET_LOADER,
+    payload: condition
   };
 };

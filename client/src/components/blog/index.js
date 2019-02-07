@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Image, List, Header } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import Posts from "./Posts";
 import * as Color from "../../config/colors";
 const Container = styled.div`

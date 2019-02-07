@@ -4,7 +4,7 @@ import { Provider, connect } from "react-redux";
 import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import store from "./store";
-import Loader from "./components/Loader";
+
 import Routes from "./components/routes";
 import NavMenu from "./components/navbar";
 import media from "./Media";
@@ -14,6 +14,7 @@ import jwt_decode from "jwt-decode";
 
 import { setUser } from "./actions";
 import PopupMessage from "./components/misc/PopupMessage";
+import Spinner from "./components/Spinner";
 const Main = styled.div`
   background-color: rgb(22, 20, 37, 0.9);
   height: 100%;
@@ -45,9 +46,13 @@ const Container = styled.div`
 `;
 
 class Root extends React.Component {
-  state = {
-    message: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "",
+      isLoading: this.props.isLoading
+    };
+  }
   componentWillMount() {
     if (localStorage.token) {
       // User's already logged in
@@ -70,22 +75,33 @@ class Root extends React.Component {
       }
     }
   }
+  componentWillReceiveProps(newProps) {
+    if (newProps.isLoading) {
+      console.log(newProps);
+      this.setState({
+        isLoading: newProps.isLoading
+      });
+    }
+  }
+
   render() {
-    return this.props.isLoading ? (
-      <Loader />
-    ) : (
+    return (
       <Main>
-        <Container>
-          <NavMenu />
-          <Routes />
-          {this.state.message ||
-            (this.props.notifications.length > 0 && (
-              <PopupMessage
-                message={this.state.message}
-                notifications={this.props.notifications}
-              />
-            ))}
-        </Container>
+        {this.state.isLoading === true ? (
+          <Spinner />
+        ) : (
+          <Container>
+            <NavMenu />
+            <Routes />
+            {this.state.message ||
+              (this.props.notifications.length > 0 && (
+                <PopupMessage
+                  message={this.state.message}
+                  notifications={this.props.notifications}
+                />
+              ))}
+          </Container>
+        )}
         <Particles className="particles" />
       </Main>
     );
