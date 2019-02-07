@@ -10,6 +10,6 @@ namespace portfolio_net.Data
         // User model data context
         public DbSet<User> Users { get; set; }
         public DbSet<Email> Emails { get; set; }
-
+        public DbSet<Post> Posts { get; set; }
     }
 }

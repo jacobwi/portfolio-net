@@ -10,6 +10,9 @@ const Container = styled.div`
   background-position: 50% 50%;
   background-repeat: no-repeat;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: lightgray;
   @import url("https://fonts.googleapis.com/css?family=Carrois+Gothic+SC");
   & .typed {
@@ -45,10 +48,11 @@ const Container = styled.div`
     }
   }
   & .content {
-    padding: 200px 100px;
+    padding: 60px 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-column-gap: 140px;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-column-gap: 40px;
+
   }
 
   & .right {
