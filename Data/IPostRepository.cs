@@ -6,7 +6,7 @@ namespace portfolio_net.Data
 {
     public interface IPostRepository
     {
-        Task<List<Post>> GetPostsAsync(Post post);
+        Task<List<Post>> GetPostsAsync();
         Task<bool> SendAsync(Post post);       
         Task<bool> DeleteAsync(string id);
         Task<bool> EditAsync(Post editedPost, string id);          

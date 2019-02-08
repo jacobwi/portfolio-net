@@ -1,11 +1,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using portfolio_net.Models;
 
 namespace portfolio_net.Data
 {
     public class PostRepository : IPostRepository
     {
+        private readonly DataContext _context;
+
+        public PostRepository (DataContext context) {
+            _context = context;
+        }
         public Task<bool> DeleteAsync(string id)
         {
             throw new System.NotImplementedException();
@@ -16,14 +22,19 @@ namespace portfolio_net.Data
             throw new System.NotImplementedException();
         }
 
-        public Task<List<Post>> GetPostsAsync(Post post)
+        public async Task<List<Post>> GetPostsAsync()
         {
-            throw new System.NotImplementedException();
+            var posts = await _context.Posts.ToListAsync();
+
+            return posts;
         }
 
-        public Task<bool> SendAsync(Post post)
+        public async Task<bool> SendAsync(Post post)
         {
-            throw new System.NotImplementedException();
+
+            await _context.Posts.AddAsync(post);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
 import Smoke from "../../assets/smoke_53.png";
-import Typed from "react-typed";
+
 import { Skills } from "./Items";
 
 const Container = styled.div`
@@ -15,8 +15,8 @@ const Container = styled.div`
   justify-content: center;
   color: lightgray;
   @import url("https://fonts.googleapis.com/css?family=Carrois+Gothic+SC");
-  & .typed {
-    font-size: 1.6rem;
+  & .desc {
+    font-size: 1.2rem;
   }
   & .background {
     background-image: url(${Smoke});
@@ -156,9 +156,7 @@ const ItemTitle = styled.div`
     props.active ? "rgba(22, 20, 37, 0.4)" : "rgb(232, 234, 236)"};
   border-radius: 4px;
 `;
-const str = [
-  "I'm a <em>Full Stack Software Engineer</em> specialized in React, NodeJS, Python, C#, and many other languages and frameworks. I also specialize in developing secure and optimized applications using the proper algorithms and software engineering practices. I believe that languages and frameworks are just tools and what matters is who's using them. "
-];
+
 export default class About extends Component {
   constructor(props) {
     super(props);
@@ -218,17 +216,8 @@ export default class About extends Component {
           </div>
           <div className="right">
             <h1>Jacob William</h1>
-            <Typed
-              typeSpeed={1}
-              strings={str}
-              shuffle={false}
-              backDelay={20}
-              fadeOut={true}
-              fadeOutDelay={400}
-              loopCount={0}
-              showCursor={false}
-              className="typed"
-            />
+            <div className='desc'>I'm a <em>Full Stack Software Engineer</em> specialized in React, NodeJS, Python, C#, and many other languages and frameworks. I also specialize in developing secure and optimized applications using the proper algorithms and software engineering practices. 
+            I believe that languages and frameworks are just tools and what matters is who's using them. </div>
             <p />
           </div>
         </div>

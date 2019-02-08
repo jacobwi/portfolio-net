@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Header } from "semantic-ui-react";
+import { Header, Button } from "semantic-ui-react";
 import Posts from "./Posts";
+import { connect } from "react-redux";
 import * as Color from "../../config/colors";
 const Container = styled.div`
-  animation: fadein 1s linear;
-  display: grid;
-  padding: 60px 40px;
 
+  padding: 60px 40px;
   min-height: 100vh;
   border-top: 15px solid ${Color.primary};
-
   width: 100%;
 `;
 
-export default class Blog extends Component {
+class Blog extends Component {
+  componentWillMount() {
+    // TODO fetch all user's post
+  }
   render() {
     return (
       <Container>
@@ -22,7 +23,17 @@ export default class Blog extends Component {
           Latest Posts
         </Header>
         <Posts />
+        {this.props.authentication.isAuthenticated && 
+          <Button icon='add' circular size='small' color='blue' floated='right'></Button>
+        }
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  authentication: state.authentication,
+});
+export default connect(
+  mapStateToProps
+)(Blog);

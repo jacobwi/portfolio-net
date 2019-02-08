@@ -7,6 +7,7 @@ import Items from "./Items";
 import Avatar from "../../assets/avatar.png";
 //import Footer from "../footer";
 import * as Color from "../../config/colors";
+import Footer from "../footer";
 const Main = styled.div`
   width: auto !important;
   padding: 0;
@@ -231,6 +232,7 @@ class Menu extends React.Component {
 
             {this.getNavbarItems(Items)}
           </div>
+          <Footer />
         </Box>
         <Box className={mobileNav}>
           <HamburgerContainer
@@ -253,6 +255,7 @@ class Menu extends React.Component {
                 <span />
               </HamburgerCloseContainer>
               <div>{this.getNavbarItems(Items)}</div>
+              <Footer />
             </MobileDropMenu>
           )}
         </Box>
