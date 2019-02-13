@@ -5,7 +5,6 @@ import Posts from "./Posts";
 import { connect } from "react-redux";
 import * as Color from "../../config/colors";
 const Container = styled.div`
-
   padding: 60px 40px;
   min-height: 100vh;
   border-top: 15px solid ${Color.primary};
@@ -23,17 +22,21 @@ class Blog extends Component {
           Latest Posts
         </Header>
         <Posts />
-        {this.props.authentication.isAuthenticated && 
-          <Button icon='add' circular size='small' color='blue' floated='right'></Button>
-        }
+        {this.props.authentication.isAuthenticated && (
+          <Button
+            icon="add"
+            circular
+            size="small"
+            color="blue"
+            floated="right"
+          />
+        )}
       </Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  authentication: state.authentication,
+  authentication: state.authentication
 });
-export default connect(
-  mapStateToProps
-)(Blog);
+export default connect(mapStateToProps)(Blog);

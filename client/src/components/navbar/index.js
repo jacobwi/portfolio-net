@@ -97,7 +97,7 @@ const HamburgerContainer = styled.div`
   &:hover {
     cursor: pointer;
     & span {
-      background: pink;
+      background: ${Color.primary};
     }
   }
   & span {
@@ -137,7 +137,7 @@ const HamburgerCloseContainer = styled.div`
   &:hover {
     cursor: pointer;
     & span {
-      background: pink;
+      background: ${Color.primary};
     }
   }
   & span {
@@ -162,7 +162,7 @@ const HamburgerCloseContainer = styled.div`
 `;
 
 const MobileDropMenu = styled.div`
-  background: rgba(62, 49, 68, 0.8);
+  background: rgba(62, 49, 68, 0.4);
   width: 100%;
   height: 100vh;
   display: flex;

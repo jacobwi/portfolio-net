@@ -19,6 +19,18 @@ const Skills = [
       ],
       icon: "paper plane"
     },
+    MiscSkills: {
+      name: "MiscSkills",
+      items: [
+        {
+          Deployment: ["Docker", "Heroku"],
+          VerisonControl: ["Git"],
+          DevOps: ["Microsoft DevOps"],
+          Databases: ["Microsoft SQL", "MySQL", "MongoDB", "Firebase"]
+        }
+      ],
+      icon: "sun outline"
+    },
     Education: {
       name: "Education",
       items: [

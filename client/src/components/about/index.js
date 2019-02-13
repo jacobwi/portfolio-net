@@ -52,7 +52,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     grid-column-gap: 40px;
-
+    grid-row-gap: 10px;
   }
 
   & .right {
@@ -216,8 +216,14 @@ export default class About extends Component {
           </div>
           <div className="right">
             <h1>Jacob William</h1>
-            <div className='desc'>I'm a <em>Full Stack Software Engineer</em> specialized in React, NodeJS, Python, C#, and many other languages and frameworks. I also specialize in developing secure and optimized applications using the proper algorithms and software engineering practices. 
-            I believe that languages and frameworks are just tools and what matters is who's using them. </div>
+            <div className="desc">
+              I'm a <em>Full Stack Software Engineer</em> specialized in React,
+              NodeJS, Python, C#, and many other languages and frameworks. I
+              also specialize in developing secure and optimized applications
+              using the proper algorithms and software engineering practices. I
+              believe that languages and frameworks are just tools and what
+              matters is who's using them.{" "}
+            </div>
             <p />
           </div>
         </div>

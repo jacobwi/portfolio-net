@@ -7,6 +7,7 @@ import Star from "../../assets/FreeAbstractLineArtDeeezy01.png";
 import * as Color from "../../config/colors";
 import { connect } from "react-redux";
 import { setLoader } from "../../actions";
+import ResumeFile from "../../assets/JacobWilliam2019.pdf";
 const Hero = styled.div`
   min-height: 100vh;
   display: flex;
@@ -40,10 +41,11 @@ const Hero = styled.div`
       }
     }
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-column-gap: 20px;
     padding: 0 40px;
     & img {
-      width: 80%;
+      width: 200px;
       box-shadow: -17px 13px 41px rgba(13, 78, 158, 0.2);
       border-radius: 10px;
     }
@@ -57,6 +59,12 @@ const Hero = styled.div`
   }
   & span {
     font-size: 2.4rem;
+  }
+
+  & .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
   }
 `;
 const Button = styled.div`
@@ -121,9 +129,14 @@ class Home extends Component {
               />
               <br />
             </div>
-            <Button>
-              <Link to="/about">Learn More</Link>
-            </Button>
+            <div className="buttons">
+              <Link to="/about">
+                <Button>Learn More</Button>
+              </Link>
+              <a href={ResumeFile}>
+                <Button>Resume</Button>
+              </a>
+            </div>
           </div>
         </div>
       </Hero>
