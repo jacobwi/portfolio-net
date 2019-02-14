@@ -6,7 +6,7 @@
 
 ## Deployment
 - Via `Docker`. To deploy the website you must dockerize the project and include .NET core and node packages in it.
-- Once dockerizedd you can then deploy it using heroku or similar web services sites. 😇
+- Once dockerized you can then deploy it using heroku or similar web services sites. 😇
 
 ---
 
