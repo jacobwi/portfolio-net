@@ -4,6 +4,7 @@ import Flutter from "../assets/flutter.png";
 import Auth from "../assets/authenticator.jpg";
 import Algo from "../assets/algo.jpg";
 import Coolit from "../assets/Coolit.png";
+import Hacker from '../assets/hackerNews.png';
 
 const Projects = [
   {
@@ -82,6 +83,19 @@ const Projects = [
     ],
     img: Reddit,
     url: "https://github.com/onlyserenity/Relectron-reddit"
+  },
+  {
+    title: "Hacker News Platform",
+    name: "Hacker News PWA",
+    desc:
+      "This application mimics Hacker News by displaying the latest stories",
+    languages: [
+      ["javascript", "JavaScript"],
+      ["react", "ReactJs"],
+      ["atom", "NextJs"]
+    ],
+    img: Hacker,
+    url: "https://github.com/onlyserenity/hack-news"
   }
 ];
 
