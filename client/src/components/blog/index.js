@@ -8,7 +8,8 @@ const Container = styled.div`
   padding: 60px 40px;
   min-height: 100vh;
   border-top: 15px solid ${Color.primary};
-  width: 100%;
+  max-width: 90%;
+  margin: 100px auto;
 `;
 
 class Blog extends Component {

@@ -5,7 +5,6 @@ import media from "../../Media";
 import { Link } from "react-router-dom";
 import Items from "./Items";
 import Avatar from "../../assets/avatar.png";
-//import Footer from "../footer";
 import * as Color from "../../config/colors";
 import Footer from "../footer";
 const Main = styled.div`
@@ -189,20 +188,19 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: "Home",
+      activeItem: this.props.path,
       mobile: false
     };
   }
-
   getNavbarItems = items =>
     items.length > 0 &&
     items.map(item => (
       <Link to={item.to} key={item.name}>
         <div
           className={
-            this.state.activeItem === item.name ? "active item" : "item"
+            this.state.activeItem === item.to ? "active item" : "item"
           }
-          id={item.name}
+          id={item.to}
           onClick={this.handleItemClick}
         >
           {item.name}

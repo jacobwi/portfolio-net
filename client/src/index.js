@@ -91,7 +91,7 @@ class Root extends React.Component {
           <Spinner />
         ) : (
           <Container>
-            <NavMenu />
+            <NavMenu path={this.props.location.pathname} />
             <Routes />
             {this.state.message ||
               (this.props.notifications.length > 0 && (
