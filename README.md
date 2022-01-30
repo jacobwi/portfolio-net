@@ -13,7 +13,7 @@
 ## FAQ
 
 - **Have a question about the project?**
-    - No problem! contact me on `amjedcha@gmail.com`.
+    - No problem! contact me on `me@jacobwi.net`.
 
 ---
 
